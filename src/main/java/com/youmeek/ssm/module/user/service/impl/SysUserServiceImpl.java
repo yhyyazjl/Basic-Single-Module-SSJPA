@@ -1,0 +1,96 @@
+package com.youmeek.ssm.module.user.service.impl;
+
+import com.youmeek.ssm.module.user.dao.SysUserDao;
+import com.youmeek.ssm.module.user.pojo.SysUser;
+import com.youmeek.ssm.module.user.service.SysUserService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import javax.annotation.Resource;
+import java.util.List;
+
+@Service
+public class SysUserServiceImpl implements SysUserService {
+	
+	@Resource
+	private SysUserDao sysUserDao;
+	
+	
+	@Override
+	@Transactional
+	public SysUser saveAndUpdateSysUser(SysUser sysUser) {
+		return sysUserDao.save(sysUser);
+	}
+	
+	
+	@Override
+	@Transactional
+	public void deleteBySysUserId(Long sysUserId) {
+		sysUserDao.deleteBySysUserId(sysUserId);
+	}
+	
+	@Override
+	public SysUser getById(Long id) {
+		return sysUserDao.findOne(id);
+	}
+	
+	@Override
+	public SysUser findBySysUserId(Long sysUserId) {
+		return sysUserDao.findBySysUserId(sysUserId);
+	}
+	
+	@Override
+	public SysUser findBySysUserLoginName(String sysUserLoginName) {
+		return sysUserDao.findBySysUserLoginName(sysUserLoginName);
+	}
+	
+	@Override
+	public List<SysUser> findDistinctSysUserBySysUserLoginNameOrSysUserId(String sysUserLoginName, Long sysUserId) {
+		return sysUserDao.findDistinctSysUserBySysUserLoginNameOrSysUserId(sysUserLoginName, sysUserId);
+	}
+	
+	@Override
+	public List<SysUser> findSysUserBySysUserLoginNameAndSysUserId(String SysUserLoginName, Long sysUserId) {
+		return sysUserDao.findSysUserBySysUserLoginNameAndSysUserId(SysUserLoginName, sysUserId);
+	}
+	
+	@Override
+	public List<SysUser> findBySysUserIsDeleteOrderBySysUserIdAsc(String sysUserIsDelete) {
+		return sysUserDao.findBySysUserIsDeleteOrderBySysUserIdAsc(sysUserIsDelete);
+	}
+	
+	@Override
+	public List<SysUser> findBySysUserIsDeleteOrderBySysUserIdDesc(String sysUserIsDelete) {
+		return sysUserDao.findBySysUserIsDeleteOrderBySysUserIdDesc(sysUserIsDelete);
+	}
+	
+	@Override
+	public SysUser findTopBySysUserIsDeleteOrderBySysUserIdDesc(String sysUserIsDelete) {
+		return sysUserDao.findTopBySysUserIsDeleteOrderBySysUserIdDesc(sysUserIsDelete);
+	}
+	
+	@Override
+	public Page<SysUser> findBySysUserIsDeleteOrderBySysUserIdDesc(String sysUserIsDelete, Pageable pageable) {
+		return sysUserDao.findBySysUserIsDeleteOrderBySysUserIdDesc(sysUserIsDelete, pageable);
+	}
+	
+	@Override
+	public List<SysUser> findBySysUserIsDelete(String sysUserIsDelete, Pageable pageable) {
+		return sysUserDao.findBySysUserIsDelete(sysUserIsDelete, pageable);
+	}
+	
+	@Override
+	public List<SysUser> findBySysUserIsDelete(String sysUserIsDelete, Sort sort) {
+		return sysUserDao.findBySysUserIsDelete(sysUserIsDelete, sort);
+	}
+	
+	@Override
+	public List<SysUser> findTop2BySysUserIsDelete(String sysUserIsDelete, Sort sort) {
+		return sysUserDao.findTop2BySysUserIsDelete(sysUserIsDelete, sort);
+	}
+	
+
+}
