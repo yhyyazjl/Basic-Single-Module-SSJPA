@@ -10,6 +10,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -38,6 +40,7 @@ public class SysUser implements Serializable {
 	private String sysUserIsDelete;
 	
 	@Column(name = "sys_user_register_datetime", nullable = false)
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date sysUserRegisterDatetime;
 	
 	@Column(name = "sys_user_email", nullable = false)
