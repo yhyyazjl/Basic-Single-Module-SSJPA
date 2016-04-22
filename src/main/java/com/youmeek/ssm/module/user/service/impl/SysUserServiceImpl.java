@@ -20,11 +20,7 @@ public class SysUserServiceImpl implements SysUserService {
 	
 	@Override
 	public SysUser saveAndUpdateSysUser(SysUser sysUser) {
-		SysUser save = sysUserDao.save(sysUser);
-		if (save != null) {
-			throw new RuntimeException("抛出个运行时异常");
-		}
-		return null;
+		return sysUserDao.save(sysUser);
 	}
 	
 	@Override
