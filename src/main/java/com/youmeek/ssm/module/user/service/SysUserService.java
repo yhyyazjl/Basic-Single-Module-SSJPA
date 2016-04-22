@@ -51,4 +51,6 @@ public interface SysUserService {
 	void deleteBySysUserId(Long sysUserId);
 	
 	List<SysUser> findIsNotDeleteUserListToTestEhCache(String sysUserIsDelete);
+	
+	void deleteInBatch(List<SysUser> sysUserList);
 }

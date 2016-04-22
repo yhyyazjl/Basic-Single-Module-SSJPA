@@ -104,5 +104,9 @@ public class SysUserServiceImpl implements SysUserService {
 		return sysUserDao.findTop2BySysUserIsDelete(sysUserIsDelete, sort);
 	}
 	
+	public void deleteInBatch(List<SysUser> sysUserList) {
+		sysUserDao.deleteInBatch(sysUserList);
+	}
+	
 
 }

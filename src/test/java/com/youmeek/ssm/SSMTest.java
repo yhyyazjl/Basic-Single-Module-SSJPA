@@ -11,6 +11,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -46,6 +47,7 @@ public class SSMTest {
 		sysUser.setSysUserEmail("363379444@qq.com");
 		sysUser.setSysUserMobile("15626256504");
 		
+		// JPA 的save 方法还支持批量插入，只要传入的参数是 List 就可以
 		SysUser sysUserResult = sysUserService.saveAndUpdateSysUser(sysUser);
 		System.out.println("--------------------------------" + sysUserResult.toString());
 		
@@ -89,6 +91,22 @@ public class SSMTest {
 	@Test
 	public void testDelete() {
 		sysUserService.deleteBySysUserId(6L);
+	}
+	
+	@Test
+	public void testBatchDelete() {
+		List<SysUser> sysUserList = new ArrayList<>();
+		
+		SysUser sysUser1 = new SysUser();
+		sysUser1.setSysUserId(10L);
+		
+		SysUser sysUser2 = new SysUser();
+		sysUser2.setSysUserId(11L);
+		
+		sysUserList.add(sysUser1);
+		sysUserList.add(sysUser2);
+		
+		sysUserService.deleteInBatch(sysUserList);
 	}
 	
 	
