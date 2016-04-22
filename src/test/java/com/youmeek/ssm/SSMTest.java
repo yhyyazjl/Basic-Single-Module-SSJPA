@@ -52,6 +52,23 @@ public class SSMTest {
 	}
 	
 	@Test
+	public void testSaveSysUserToTransactionalTest() {
+		SysUser sysUser = new SysUser();
+		
+		sysUser.setSysUserLoginName("YouMeek99");
+		sysUser.setSysUserLoginPassword("e10adc3949ba59abbe56e057f20f883e");
+		sysUser.setSysUserIsDelete("N");
+		sysUser.setSysUserRegisterDatetime(new Date());
+		sysUser.setSysUserEmail("363379444@qq.com");
+		sysUser.setSysUserMobile("15626256504");
+		
+		//在 Service 中有异常抛出，所以这条记录应该不会被插入到数据库
+		SysUser sysUserResult = sysUserService.saveAndUpdateSysUserToTransactionalTest(sysUser);
+		System.out.println("--------------------------------" + sysUserResult.toString());
+		
+	}
+	
+	@Test
 	public void testUpdate() {
 		SysUser sysUser = new SysUser();
 		

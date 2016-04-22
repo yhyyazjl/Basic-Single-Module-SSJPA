@@ -11,6 +11,8 @@ public interface SysUserService {
 	
 	SysUser saveAndUpdateSysUser(SysUser sysUser);
 	
+	SysUser saveAndUpdateSysUserToTransactionalTest(SysUser sysUser);
+	
 	SysUser getById(Long id);
 	
 	

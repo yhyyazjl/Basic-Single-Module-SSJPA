@@ -7,7 +7,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -20,14 +19,26 @@ public class SysUserServiceImpl implements SysUserService {
 	
 	
 	@Override
-	@Transactional
 	public SysUser saveAndUpdateSysUser(SysUser sysUser) {
-		return sysUserDao.save(sysUser);
+		SysUser save = sysUserDao.save(sysUser);
+		if (save != null) {
+			throw new RuntimeException("抛出个运行时异常");
+		}
+		return null;
+	}
+	
+	@Override
+	public SysUser saveAndUpdateSysUserToTransactionalTest(SysUser sysUser) {
+		SysUser save = sysUserDao.save(sysUser);
+		if (save != null) {
+			//如果插入成功，则模拟抛异常，异常的抛弃必须在 service 类中才有效果，不然不会回滚的
+			throw new RuntimeException("抛出个运行时异常");
+		}
+		return null;
 	}
 	
 	
 	@Override
-	@Transactional
 	public void deleteBySysUserId(Long sysUserId) {
 		sysUserDao.deleteBySysUserId(sysUserId);
 	}

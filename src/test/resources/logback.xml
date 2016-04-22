@@ -46,7 +46,7 @@
 
     <!--级别：ALL > TRACE > DEBUG > INFO > WARN > ERROR-->
     <!--对特定目录或是类进行指定级别输出，而不使用root的级别-->
-    <logger name="com.youmeek" level="INFO"/>
+    <logger name="com.youmeek" level="TRACE"/>
 
     <!--myibatis log configure-->
     <logger name="com.apache.ibatis" level="TRACE"/>
@@ -67,7 +67,7 @@
     <!--======================================================-->
 
     <!--默认所有级别是 debug，使用控制台和文件两种类型都进行输出输出，如果只要使用一种控制台输出的话，则下面把FILE那一行去掉即可-->
-    <root level="INFO">
+    <root level="TRACE">
         <appender-ref ref="STDOUT" />
         <appender-ref ref="FILE" />
     </root>

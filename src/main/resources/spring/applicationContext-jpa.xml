@@ -12,6 +12,7 @@ http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
 
 
         <property name="persistenceUnitName" value="jpaXml" />
+        <property name="persistenceXmlLocation" value="classpath*:META-INF/persistence.xml"></property>
         
         <property name="dataSource" ref="dataSource" />
         
@@ -37,6 +38,7 @@ http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
                 <!--如果显示 SQL，输出的 SQL 时候要格式化-->
                 <prop key="hibernate.format_sql">true</prop>
                 <!--在显示的 SQL 中增加一些 Hibernate 提供的注释说明，依此来解释它生成的 SQL 意思-->
+                <!--配置如何根据java模型生成数据库表结构,常用update,validate-->
                 <prop key="hibernate.use_sql_comments">true</prop>
                 <prop key="hibernate.hbm2ddl.auto">validate</prop>
                 <!--关于这个属性可以看：http://blog.csdn.net/dracotianlong/article/details/27834143-->
@@ -53,20 +55,20 @@ http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
                 <!-- <prop key="hibernate.cache.use_query_cache">true</prop>-->
                 <!-- 高速缓存提供程序 -->
                 <!-- 具体可以看官网：http://www.ehcache.org/documentation/2.8/integrations/hibernate.html-->
+                <!-- <prop key="hibernate.cache.provider_class">org.hibernate.cache.EhCacheProvider</prop>-->
                 <!-- <prop key="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory</prop>-->
+                <!-- <prop key="hibernate.cache.provider_configuration">classpath:ehcache.xml</prop>-->
             </props>
         </property>
 
     </bean>
 
 
-
-
     <!-- Hibernate对Jpa的实现 -->
     <bean id="hibernateJpaVendorAdapter" class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"/>
 
     <!-- 重要配置：启用扫描并自动创建代理的功能  -->
-    <jpa:repositories base-package="com.youmeek.**.dao"  transaction-manager-ref="transactionManager" entity-manager-factory-ref="entityManagerFactory"/>
+    <jpa:repositories base-package="com.youmeek.**.dao" transaction-manager-ref="transactionManager" entity-manager-factory-ref="entityManagerFactory"/>
 
 
 </beans>
