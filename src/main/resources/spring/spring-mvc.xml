@@ -39,7 +39,7 @@
 
 
     <!-- 配置注解驱动 -->
-    <!-- 统一处理返回json日期时间格式 -->
+    <!-- 处理responseBody 里面日期类型，统一处理返回json日期时间格式 -->
     <!--资料：http://blog.csdn.net/edward9145/article/details/18700415-->
     <mvc:annotation-driven>
         <mvc:message-converters register-defaults="true">
@@ -48,7 +48,7 @@
                     <bean class="com.fasterxml.jackson.databind.ObjectMapper">
                         <property name="dateFormat">
                             <bean class="java.text.SimpleDateFormat">
-                                <constructor-arg value="yyyy-MM-dd HH:mm:ss"/>
+                                <constructor-arg type="java.lang.String" value="yyyy-MM-dd HH:mm:ss"/>
                             </bean>
                         </property>
                     </bean>
