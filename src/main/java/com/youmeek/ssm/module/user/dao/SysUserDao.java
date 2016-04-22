@@ -57,9 +57,6 @@ public interface SysUserDao extends JpaRepository<SysUser, Long> {
 	// 删除操作
 	void deleteBySysUserId(Long sysUserId);
 	
-	// 批量删除操作
-	void deleteInBatch(List<SysUser> sysUserList);
-	
 	
 	//小于 生成的JQL:where sysUserIsDelete < ?1
 	List<SysUser> findBySysUserIsDeleteLessThan(String sysUserIsDelete);

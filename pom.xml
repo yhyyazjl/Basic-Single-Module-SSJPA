@@ -38,7 +38,10 @@
 
 
         <!--下面这两个是springAOP需要用到-->
-        <aspectjweaver.version>1.7.2</aspectjweaver.version>
+        <!--spring-aspects依赖这个，所以这个也可以注释掉，除非有特定jar需要更高或是更低版本的时候我们再来指定-->
+        <!--<aspectjweaver.version>1.8.7</aspectjweaver.version>-->
+        <!--Spring Data JPA 依赖这个，它会自己去找-->
+        <!--<aspectjrt.version>1.8.9</aspectjrt.version>-->
 
 
         <junit.version>4.11</junit.version>
@@ -191,11 +194,17 @@
         </dependency>
 
         <!--下面两个提供对 AspectJ 的支持，是 spring-aspects 所需要依赖的-->
-        <dependency>
-            <groupId>org.aspectj</groupId>
-            <artifactId>aspectjweaver</artifactId>
-            <version>${aspectjweaver.version}</version>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.aspectj</groupId>-->
+            <!--<artifactId>aspectjweaver</artifactId>-->
+            <!--<version>${aspectjweaver.version}</version>-->
+        <!--</dependency>-->
+        
+        <!--<dependency>-->
+            <!--<groupId>org.aspectj</groupId>-->
+            <!--<artifactId>aspectjrt</artifactId>-->
+            <!--<version>${aspectjrt.version}</version>-->
+        <!--</dependency>-->
 
         <dependency>
             <groupId>org.springframework.data</groupId>
