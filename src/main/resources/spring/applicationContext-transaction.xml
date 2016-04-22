@@ -70,6 +70,7 @@ http://www.springframework.org/schema/aop/spring-aop-4.2.xsd">
             <tx:method name="load*" propagation="SUPPORTS" read-only="true"/>
             <tx:method name="search*" propagation="SUPPORTS" read-only="true"/>
             <tx:method name="datagrid*" propagation="SUPPORTS" read-only="true"/>
+            <tx:method name="show*" propagation="SUPPORTS" read-only="true"/>
         </tx:attributes>
     </tx:advice>
     
