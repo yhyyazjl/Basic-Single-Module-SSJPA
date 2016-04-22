@@ -43,10 +43,13 @@ public class LogAspect {
 			}
 			LOG.info("--------- 遍历方法参数 end ---------");
 		}
+		LOG.info("/////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\");
+		
 	}
 	
 	@After("com.youmeek.ssm.aop.log.LogPointcut.inControllerLayer()")
 	public void logAfter() {
+		LOG.info("\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\/////////////////////////////////////");
 		endTime = System.currentTimeMillis();
 		takeTime = endTime - startTime;
 		LOG.info("3.共花费时间：" + takeTime + " 毫秒");
