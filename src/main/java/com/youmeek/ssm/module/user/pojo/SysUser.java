@@ -1,5 +1,6 @@
 package com.youmeek.ssm.module.user.pojo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.GenericGenerator;
@@ -81,6 +82,8 @@ public class SysUser implements Serializable {
 		this.sysUserIsDelete = sysUserIsDelete;
 	}
 	
+	//由于 spring-mvc.xml 配置了日期的统一格式：yyyy-MM-dd HH:mm:ss，如果你不想要使用默认格式，可以自己定义
+	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
 	public Date getSysUserRegisterDatetime() {
 		return sysUserRegisterDatetime;
 	}
