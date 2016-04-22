@@ -13,6 +13,8 @@ import org.springframework.stereotype.Component;
  * http://www.xdemo.org/springmvc-aop-annotation/
  * http://www.cnblogs.com/-bumblebee-/archive/2012/03/29/2423408.html
  * http://hotstrong.iteye.com/blog/1330046
+ * http://blog.csdn.net/confirmaname/article/details/9728327
+ * http://blog.csdn.net/z2007130205/article/details/25713843
  */
 @Component
 @Aspect
