@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import java.util.Date;
+import java.util.List;
 
 @Controller
 @RequestMapping("/sysUserController")
@@ -48,6 +49,20 @@ public class SysUserController {
 		return new Date();
 	}
 	
+	@RequestMapping("/test-ehcache")
+	@ResponseBody
+	public List<SysUser> findEhcache(){
+		//使用缓存之后，调用这个方法，第一次调用的时候控制台有输出 sql 语句，后面都没有了
+		return sysUserService.findIsNotDeleteUserListToTestEhCache("N");
+	}
+	
+	@RequestMapping("/test-no-ehcache/{userId}")
+	@ResponseBody
+	public SysUser findNoEhcache(@PathVariable("userId") Long userId){
+		//没有使用缓存，无论何时调用这个方法，控制台都会输出 sql 语句
+		SysUser user = sysUserService.findBySysUserId(userId);
+		return user;
+	}
 
 
 

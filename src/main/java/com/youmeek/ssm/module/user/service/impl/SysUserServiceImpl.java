@@ -40,6 +40,11 @@ public class SysUserServiceImpl implements SysUserService {
 	}
 	
 	@Override
+	public List<SysUser> findIsNotDeleteUserListToTestEhCache(String sysUserIsDelete) {
+		return sysUserDao.findIsNotDeleteUserListToTestEhCache(sysUserIsDelete);
+	}
+	
+	@Override
 	public SysUser getById(Long id) {
 		return sysUserDao.findOne(id);
 	}

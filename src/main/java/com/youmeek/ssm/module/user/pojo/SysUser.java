@@ -1,7 +1,10 @@
 package com.youmeek.ssm.module.user.pojo;
 
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.GenericGenerator;
 
+import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,7 +13,11 @@ import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.Date;
 
-
+//region = pojoCache，表示：指定缓存的区域，这个是配置在 ehcache.xml 中
+//CacheConcurrencyStrategy 资料可以看：http://www.iteye.com/problems/49111
+//READ_WRITE：严格读写缓存。用于对数据同步要求严格的情况，对于经常被读、较少修改的数据，可以采用此策略缓存。不支持分布式缓存。实际应用最广泛的缓存策略。
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE, region = "pojoCache")
+@Cacheable(true)
 @Entity
 @Table(name = "sys_user")
 public class SysUser implements Serializable {

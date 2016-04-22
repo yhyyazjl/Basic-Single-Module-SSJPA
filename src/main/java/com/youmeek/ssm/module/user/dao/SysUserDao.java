@@ -6,8 +6,11 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.jpa.repository.QueryHints;
 import org.springframework.stereotype.Repository;
 
+import javax.persistence.QueryHint;
 import java.util.List;
 
 @Repository
@@ -44,4 +47,10 @@ public interface SysUserDao extends JpaRepository<SysUser, Long> {
 	
 	// 删除操作
 	void deleteBySysUserId(Long sysUserId);
+	
+	//使用二级缓存
+	@Query(value = "select u from SysUser u where u.sysUserIsDelete = ?1")
+	@QueryHints(value = {@QueryHint(name = "org.hibernate.cacheable", value = "true")})
+	List<SysUser> findIsNotDeleteUserListToTestEhCache(String sysUserIsDelete);
+	
 }  

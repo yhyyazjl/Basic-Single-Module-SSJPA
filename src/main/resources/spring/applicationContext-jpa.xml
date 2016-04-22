@@ -5,30 +5,30 @@
 http://www.springframework.org/schema/beans/spring-beans-4.2.xsd 
 http://www.springframework.org/schema/data/jpa 
 http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
-    
+
     <!--上面的xsd最好和当前使用的Spring版本号一致,如果换了Spring版本,这个最好也跟着改-->
 
     <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
 
 
-        <property name="persistenceUnitName" value="jpaXml" />
+        <property name="persistenceUnitName" value="jpaXml"/>
         <property name="persistenceXmlLocation" value="classpath*:META-INF/persistence.xml"></property>
-        
-        <property name="dataSource" ref="dataSource" />
-        
+
+        <property name="dataSource" ref="dataSource"/>
+
         <!--zchtodo 这个作用是什么?-->
         <property name="jpaDialect">
-            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaDialect" />
+            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaDialect"/>
         </property>
-        
-        
+
+
         <!-- 指定Jpa持久化实现厂商类,这里以Hibernate为例 -->
         <property name="jpaVendorAdapter" ref="hibernateJpaVendorAdapter"/>
         <!-- 指定Entity实体类包路径 -->
-        <property name="packagesToScan" value="com.youmeek.**.pojo" />
+        <property name="packagesToScan" value="com.youmeek.**.pojo"/>
         <!-- 指定JPA属性；如Hibernate中指定是否显示SQL的是否显示、方言等 -->
         <property name="jpaProperties">
-            <!--官网说明这些配置属性：http://docs.jboss.org/hibernate/orm/3.3/reference/en/html/session-configuration.html-->
+            <!--hibernate 官网说明这些配置属性：http://docs.jboss.org/hibernate/orm/3.3/reference/en/html/session-configuration.html-->
             <props>
                 <!--常见的还有 MySQL5Dialect、MySQL5InnoDBDialect、MySQL57InnoDBDialect、MySQLDialect、MySQLInnoDBDialect、MySQLMyISAMDialect-->
                 <!--如果你使用的数据库是 5.7 的话可以考虑用：MySQL57InnoDBDialect-->
@@ -50,14 +50,17 @@ http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
 
 
                 <!-- 开启二级缓存，这里使用的EhCache，如果要使用这个也需要引入对应的依赖包 -->
-                <!-- <prop key="hibernate.cache.use_second_level_cache">true</prop>-->
+                <prop key="hibernate.cache.use_second_level_cache">true</prop>
                 <!-- 开启查询缓存 -->
-                <!-- <prop key="hibernate.cache.use_query_cache">true</prop>-->
+                <prop key="hibernate.cache.use_query_cache">true</prop>
                 <!-- 高速缓存提供程序 -->
                 <!-- 具体可以看官网：http://www.ehcache.org/documentation/2.8/integrations/hibernate.html-->
-                <!-- <prop key="hibernate.cache.provider_class">org.hibernate.cache.EhCacheProvider</prop>-->
-                <!-- <prop key="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory</prop>-->
-                <!-- <prop key="hibernate.cache.provider_configuration">classpath:ehcache.xml</prop>-->
+                <prop key="hibernate.cache.provider_class">org.hibernate.cache.EhCacheProvider</prop>
+                <prop key="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory</prop>
+                <prop key="hibernate.cache.provider_configuration">classpath*:cache/ehcache.xml</prop>
+                <!--如果开启了二级缓存，使用该配置可以看二级缓存中存放的数据条数，查询时错过的数据条数，缓存命中率等信息-->
+                <!--如果开启为true，有一些列方法可以查询这些结果，但是需要你另外写代码，具体可以自己搜索下-->
+                <prop key="hibernate.generate_statistics">false</prop>
             </props>
         </property>
 
