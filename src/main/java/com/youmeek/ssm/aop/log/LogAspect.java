@@ -37,6 +37,7 @@ public class LogAspect {
 			LOG.info(methodName + " 方法没有参数");
 		} else {
 			LOG.info("--------- 遍历方法参数 start ---------");
+			//如果参数是一个对象，则该参数值为显示其 toString 方法内容
 			for (int i = 0; i < args.length; i++) {
 				LOG.info("参数位数：" + (i + 1) + "，该参数值 = { " + args[i] + " }");
 			}
