@@ -49,7 +49,7 @@ http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
                 <!--<prop key="hibernate.max_fetch_depth">3</prop>-->
 
 
-                <!-- 开启二级缓存，这里使用的EhCache，如果要使用这个也需要引入对应的依赖包 -->
+                <!-- 开启二级缓存，这里使用的EhCache，如果要使用这个也需要引入对应的依赖包（下面的参数都是适用于二级缓存的，如果二级缓存关闭，其他的都没有意义） -->
                 <prop key="hibernate.cache.use_second_level_cache">true</prop>
                 <!-- 开启查询缓存 -->
                 <prop key="hibernate.cache.use_query_cache">true</prop>
